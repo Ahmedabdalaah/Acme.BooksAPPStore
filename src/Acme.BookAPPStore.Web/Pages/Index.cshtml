@@ -1,0 +1,98 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Acme.BookAPPStore.Localization
+@using Volo.Abp.Users
+@model Acme.BookAPPStore.Web.Pages.IndexModel
+@inject IHtmlLocalizer<BookAPPStoreResource> L
+@inject ICurrentUser CurrentUser
+@section styles {
+<abp-style src="/Pages/Index.css" />
+}
+@section scripts {
+<abp-script src="/Pages/Index.js" />
+}
+<div class="container" >
+    <div class="p-5 text-center">
+        <h1>Welcome to the Book Store Application </h1>
+        <hr/>
+        @if (!CurrentUser.IsAuthenticated)
+        {
+            <a abp-button="Primary" href="~/Account/Login"><i class="fa fa-sign-in"></i> @L["Login"]</a>
+        }
+    <div class="w3-content w3-display-container">
+        <a >
+            <img class="mySlides" src="~/images/img/slide1.jpg" style="width:100%; height: 350px">
+        </a>
+        <a >
+            <img class="mySlides" src="~/images/img/slide2.png" style="width:100%; height: 350px">
+        </a>
+        <a >
+            <img class="mySlides" src="~/images/img/slide3.jpg" style="width:100%; height: 350px">
+        </a>
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+        </div>
+
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+    </script>
+    <div>
+        <abp-table hoverable-rows="true" responsive-sm="true">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="grid-container">
+                        <div class="card text-white bg-body-light mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Book Store</div>
+                            <div class="card-body">
+                                    <h4 class="card-title" style="color:blue; font-size:large; text-align: center;">Books </h4>
+                                    <img src="~/images/img/books.jpg" class="card-title" style="width:350px ; height: 150px"></img>
+                                    <p class="card-text" style="color:blue; font-size:large; text-align: center;">Show All Book </p>
+                            </div>
+                            </div>
+                     </th>
+                    <th>
+                        <div class="grid-container">
+                            <div class="card text-white bg-body-light mb-3" style="max-width: 20rem;">
+                                <div class="card-header">Book Store</div>
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color:blue; font-size:large; text-align: center;"> Books </h4>
+                                    <img src="~/images/img/add.png" class="card-title" style="width:350px ; height: 150px"></img>
+                                    <p class="card-text" style="color:blue; font-size:large; text-align: center;"> Add New Book </p>
+                                </div>
+                            </div>
+                    </th>
+                    <th>
+                        <div class="grid-container">
+                            <div class="card text-white bg-body-light mb-3" style="max-width: 20rem;">
+                                <div class="card-header">Book Store</div>
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color:blue; font-size:large; text-align: center;">Book </h4>
+                                    <img src="~/images/img/delete.png" class="card-title" style="width:350px ; height: 150px"></img>
+                                    <p class="card-text" style="color:blue; font-size:large; text-align: center;">Delete Exist Book </p>
+                                </div>
+                            </div>
+                    </th>
+                </tr>
+            </thead>
+           
+        </abp-table>
+
+        </div>

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@abp/flag-icon-css": "^8.1.0"
+  }
+}

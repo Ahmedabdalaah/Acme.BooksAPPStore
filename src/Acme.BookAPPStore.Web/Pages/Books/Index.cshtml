@@ -1,0 +1,26 @@
+﻿@page
+@using Acme.BookAPPStore.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Acme.BookAPPStore.Web.Pages.Books
+@using Microsoft.Extensions.Localization
+@model IndexModel
+@inject IStringLocalizer<BookAPPStoreResource> L
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.MenuItemName = "BooksStore";
+    PageLayout.Content.Title = L["Books"].Value;
+}
+
+@section scripts {
+    <abp-script src="/Pages/Books/Index.js" />
+}
+@section content_toolbar {
+    <abp-button id="NewBookButton" text="@L["NewBook"].Value" icon="plus" size="Block_Medium" button-type="Outline_Success" />
+}
+
+<abp-card>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="BooksTable"></abp-table>
+    </abp-card-body>
+</abp-card>
+
