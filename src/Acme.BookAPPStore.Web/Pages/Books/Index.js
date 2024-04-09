@@ -50,14 +50,27 @@
                     rowAction: {
                         items:
                             [
-                                {
+                {
                                     text: l('Details'),
                                     action: function (data) {
                                         detailsModal.open({ id: data.record.id });
-                                    }
-                                }
-                            ]
                     }
+                },
+                {
+                    title: l('Price'),
+                    data: "price"
+                },
+                {
+                    title: l('CreationTime'), data: "creationTime",
+                    render: function (data) {
+                        return luxon
+                            .DateTime
+                            .fromISO(data, {
+                                locale: abp.localization.currentCulture.name
+                            }).toLocaleString(luxon.DateTime.DATETIME_SHORT);
+                    }
+                            ]
+                }
                 },
             ]
         })
